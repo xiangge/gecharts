@@ -1,0 +1,60 @@
+
+        <link href="/home/chcao/cc-dev/gechart/static/nvd3/build/nv.d3.css" rel="stylesheet" type="text/css">
+        <script src="/home/chcao/cc-dev/gechart/static/d3/d3.js"></script>
+        <script src="/home/chcao/cc-dev/gechart/static/d3/d3.min.js"></script>
+        <script src="/home/chcao/cc-dev/gechart/static/nvd3/build/nv.d3.js"></script>
+        
+    <div id="multibarhorizontalchart"><svg style="width:1500px;height:900px;"></svg></div>
+
+
+    <script>
+
+
+
+    data_multibarhorizontalchart=[{"values": [{"value": 348, "label": "/rest_api/v1/global-components"}, {"value": 168, "label": "/rest_api/v1/products"}, {"value": 93, "label": "/rest_api/v1/multi%2Ddestinations"}, {"value": 1991, "label": "/rest_api/v1/content-delivery-repos"}, {"value": 2, "label": "/rest_api/v1/packages"}, {"value": 1, "label": "/rest_api/v1/component-group-types"}, {"value": 13072, "label": "/rest_api/v1/release%2Dvariants"}, {"value": 2577, "label": "/rest_api/v1/unreleasedvariants"}, {"value": 1, "label": "/rest_api/v1/push-targets"}, {"value": 4760, "label": "/rest_api/v1/release-variants"}, {"value": 170, "label": "/rest_api/v1/"}, {"value": 2, "label": "/rest_api/v1/bugzilla-components"}, {"value": 2, "label": "/rest_api/v1/compose-images"}, {"value": 9637, "label": "/rest_api/v1/releases"}, {"value": 5, "label": "/rest_api/v1/content-delivery-repo-families"}, {"value": 4, "label": "/rest_api/v1/release-variant-types"}, {"value": 2, "label": "/rest_api/v1/osbs"}, {"value": 32, "label": "/rest_api/v1/sigkeys"}, {"value": 3, "label": "/rest_api/v1/global%2Dcomponent%2Dcontacts"}, {"value": 3009, "label": "/rest_api/v1/rpms"}, {"value": 17, "label": "/rest_api/v1/release-groups"}, {"value": 6, "label": "/rest_api/v1/arches"}, {"value": 23, "label": "/rest_api/v1/labels"}, {"value": 1, "label": "/rest_api/v1/release-component-types"}, {"value": 11329, "label": "/rest_api/v1/auth"}, {"value": 14, "label": "/rest_api/v1/release-types"}, {"value": 1, "label": "/rest_api/v1/images"}, {"value": 28, "label": "/rest_api/v1/multi-destinations"}, {"value": 3, "label": "/rest_api/v1/rpc"}, {"value": 32, "label": "/rest_api/v1/variant-cpes"}, {"value": 63, "label": "/rest_api/v1/product-versions"}, {"value": 5736, "label": "/rest_api/v1/content%2Ddelivery%2Drepos"}, {"value": 2, "label": "/rest_api/v1/release-component-relationships"}, {"value": 1019, "label": "/rest_api/v1/modules"}, {"value": 1, "label": "/rest_api/v1/release"}, {"value": 2, "label": "/rest_api/v1/components"}, {"value": 1, "label": "/rest_api/v1/global-component-types"}, {"value": 1086, "label": "/rest_api/v1/composes"}, {"value": 5, "label": "/rest_api/v1/base-products"}, {"value": 37, "label": "/rest_api/v1/global-component-contacts"}, {"value": 6, "label": "/rest_api/v1/cpes"}, {"value": 578, "label": "/rest_api/v1/partners-mapping"}, {"value": 2757, "label": "/rest_api/v1/partners"}, {"value": 2, "label": "/rest_api/v1/content-delivery-content-formats"}, {"value": 33, "label": "/rest_api/v1/released-files"}, {"value": 22, "label": "/rest_api/v1/compose-tree-locations"}, {"value": 1014, "label": "/rest_api/v1/variant%2Dcpes"}, {"value": 1, "label": "/rest_api/v1/content-delivery-content-categories"}, {"value": 4, "label": "/rest_api/v1/%7B%22content_format%22:%22qcow2%22%7D"}, {"value": 1, "label": "/rest_api/v1/release-variant"}, {"value": 42, "label": "/rest_api/v1/contacts"}, {"value": 1, "label": "/rest_api/v1/partner"}, {"value": 17, "label": "/rest_api/v1/release-components"}, {"value": 1, "label": "/rest_api/v1/releases.json"}, {"value": 301, "label": "/rest_api/v1/component-branches"}, {"value": 1, "label": "/rest_api/v1/product_version"}, {"value": 1804, "label": "/rest_api/v1/changesets"}, {"value": 7, "label": "/rest_api/v1/variant-types"}, {"value": 1, "label": "/rest_api/v1/component-branch-slas"}, {"value": 21, "label": "/rest_api/v1/contact-roles"}, {"value": 27, "label": "/rest_api/v1/compose-rpms"}, {"value": 1, "label": "/rest_api/v1/product_versions"}], "key": "Serie 1"}];
+
+    nv.addGraph(function() {
+        var chart = nv.models.pieChart();
+        chart.margin({top: 30, right: 60, bottom: 20, left: 60});
+        var datum = data_multibarhorizontalchart[0].values;
+
+        chart.color(d3.scale.category20c().range());
+
+    chart.tooltipContent(function(key, y, e, graph) {
+          var x = String(key);
+              var y = 'Number: ' +  String(y) ;
+
+              tooltip_str = '<center><b>'+x+'</b></center>' + y;
+              return tooltip_str;
+              });
+        chart.showLabels(true);
+
+            chart.donut(false);
+
+    chart.showLegend(true);
+
+
+
+
+        chart
+            .x(function(d) { return d.label })
+            .y(function(d) { return d.value });
+
+        chart.width(1500);
+
+        chart.height(900);
+
+
+            d3.select('#multibarhorizontalchart svg')
+            .datum(datum)
+            .transition().duration(500)
+            .attr('width', 1500)
+            .attr('height', 900)
+            .call(chart);
+
+
+        });
+
+
+
+    </script>

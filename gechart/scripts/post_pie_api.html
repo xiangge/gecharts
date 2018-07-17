@@ -1,0 +1,60 @@
+
+        <link href="/home/chcao/cc-dev/gechart/static/nvd3/build/nv.d3.css" rel="stylesheet" type="text/css">
+        <script src="/home/chcao/cc-dev/gechart/static/d3/d3.js"></script>
+        <script src="/home/chcao/cc-dev/gechart/static/d3/d3.min.js"></script>
+        <script src="/home/chcao/cc-dev/gechart/static/nvd3/build/nv.d3.js"></script>
+        
+    <div id="multibarhorizontalchart"><svg style="width:1500px;height:900px;"></svg></div>
+
+
+    <script>
+
+
+
+    data_multibarhorizontalchart=[{"values": [{"value": 770, "label": "/rest_api/v1/global-components"}, {"value": 71, "label": "/rest_api/v1/modules"}, {"value": 1, "label": "/rest_api/v1/cpes"}, {"value": 51, "label": "/rest_api/v1/content-delivery-repos"}, {"value": 1, "label": "/rest_api/v1/sigkeys"}, {"value": 8, "label": "/rest_api/v1/variant-cpes"}, {"value": 50, "label": "/rest_api/v1/release-variants"}, {"value": 8, "label": "/rest_api/v1/products"}, {"value": 742, "label": "/rest_api/v1/compose-images"}, {"value": 52, "label": "/rest_api/v1/releases"}, {"value": 2, "label": "/rest_api/v1/release-components"}, {"value": 294, "label": "/rest_api/v1/component-branches"}, {"value": 13, "label": "/rest_api/v1/rpc"}, {"value": 6274, "label": "/rest_api/v1/partners-mapping"}, {"value": 10, "label": "/rest_api/v1/partners"}, {"value": 9, "label": "/rest_api/v1/product-versions"}, {"value": 918, "label": "/rest_api/v1/compose-rpms"}], "key": "Serie 1"}];
+
+    nv.addGraph(function() {
+        var chart = nv.models.pieChart();
+        chart.margin({top: 30, right: 60, bottom: 20, left: 60});
+        var datum = data_multibarhorizontalchart[0].values;
+
+        chart.color(d3.scale.category20c().range());
+
+    chart.tooltipContent(function(key, y, e, graph) {
+          var x = String(key);
+              var y = 'Number: ' +  String(y) ;
+
+              tooltip_str = '<center><b>'+x+'</b></center>' + y;
+              return tooltip_str;
+              });
+        chart.showLabels(true);
+
+            chart.donut(false);
+
+    chart.showLegend(true);
+
+
+
+
+        chart
+            .x(function(d) { return d.label })
+            .y(function(d) { return d.value });
+
+        chart.width(1500);
+
+        chart.height(900);
+
+
+            d3.select('#multibarhorizontalchart svg')
+            .datum(datum)
+            .transition().duration(500)
+            .attr('width', 1500)
+            .attr('height', 900)
+            .call(chart);
+
+
+        });
+
+
+
+    </script>

@@ -1,0 +1,59 @@
+    <link href="/home/chcao/cc-dev/gechart/static/nvd3/build/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="/home/chcao/cc-dev/gechart/static/d3/d3.js"></script>
+    <script src="/home/chcao/cc-dev/gechart/static/d3/d3.min.js"></script>
+    <script src="/home/chcao/cc-dev/gechart/static/nvd3/build/nv.d3.js"></script>
+
+    <div id="piechart"><svg style="width:900px;height:900px;"></svg></div>
+
+
+    <script>
+
+
+
+    data_piechart=[{"values": [{"value": 51, "label": "/rest_api/v1/content-delivery-repos"}, {"value": 7, "label": "/rest_api/v1/release-variants"}, {"value": 38, "label": "/rest_api/v1/contacts"}, {"value": 32, "label": "/rest_api/v1/global-component-contacts"}, {"value": 1700, "label": "/rest_api/v1/partners-mapping"}, {"value": 19, "label": "/rest_api/v1/contact-roles"}], "key": "Serie 1"}];
+
+    nv.addGraph(function() {
+        var chart = nv.models.pieChart();
+        chart.margin({top: 30, right: 60, bottom: 20, left: 60});
+        var datum = data_piechart[0].values;
+
+        chart.color(d3.scale.category20c().range());
+
+    chart.tooltipContent(function(key, y, e, graph) {
+          var x = String(key);
+              var y =  String(y)  + ' cal';
+
+              tooltip_str = '<center><b>'+x+'</b></center>' + y;
+              return tooltip_str;
+              });
+        chart.showLabels(true);
+
+            chart.donut(false);
+
+    chart.showLegend(true);
+
+
+
+
+        chart
+            .x(function(d) { return d.label })
+            .y(function(d) { return d.value });
+
+        chart.width(900);
+
+        chart.height(900);
+
+
+            d3.select('#piechart svg')
+            .datum(datum)
+            .transition().duration(950)
+            .attr('width', 900)
+            .attr('height', 900)
+            .call(chart);
+
+
+        });
+
+
+
+    </script>

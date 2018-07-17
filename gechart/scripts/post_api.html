@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.7.0/nv.d3.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.7.0/nv.d3.min.js"></script>
+        <style>
+		#chart svg {
+		}
+		.nv-x text{
+		  font-size: 13px;
+          fill: blue;
+		}
+        .nv-y text{
+		  font-size: 20px;
+          fill:red;
+		}
+	</style>
+    </head>
+    <body>
+        
+    <div id="multibarhorizontalchart"><svg style="width:1400px;height:900px;"></svg></div>
+
+
+    <script>
+
+
+
+      data_multibarhorizontalchart=[{"values": [{"y": 770, "x": "/rest_api/v1/global-components"}, {"y": 71, "x": "/rest_api/v1/modules"}, {"y": 1, "x": "/rest_api/v1/cpes"}, {"y": 51, "x": "/rest_api/v1/content-delivery-repos"}, {"y": 1, "x": "/rest_api/v1/sigkeys"}, {"y": 8, "x": "/rest_api/v1/variant-cpes"}, {"y": 50, "x": "/rest_api/v1/release-variants"}, {"y": 8, "x": "/rest_api/v1/products"}, {"y": 742, "x": "/rest_api/v1/compose-images"}, {"y": 52, "x": "/rest_api/v1/releases"}, {"y": 2, "x": "/rest_api/v1/release-components"}, {"y": 294, "x": "/rest_api/v1/component-branches"}, {"y": 13, "x": "/rest_api/v1/rpc"}, {"y": 6274, "x": "/rest_api/v1/partners-mapping"}, {"y": 10, "x": "/rest_api/v1/partners"}, {"y": 9, "x": "/rest_api/v1/product-versions"}, {"y": 918, "x": "/rest_api/v1/compose-rpms"}], "key": "Serie 1", "yAxis": "1"}];
+
+
+        nv.addGraph(function() {
+        var chart = nv.models.discreteBarChart();
+
+        chart.margin({top: 30, right: 60, bottom: 50, left: 60});
+
+        var datum = data_multibarhorizontalchart;
+
+
+
+                    chart.yAxis
+                .tickFormat(d3.format(',.0f'));
+
+    
+    
+
+
+            d3.select('#multibarhorizontalchart svg')
+            .datum(datum)
+            .transition().duration(500)
+            .attr('width', 1400)
+            .attr('height', 900)
+            .call(chart);
+
+    
+        });
+    </script>
+
+    </body>
+</html>

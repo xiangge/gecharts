@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.7.0/nv.d3.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.7.0/nv.d3.min.js"></script>
+        <style>
+		#chart svg {
+		}
+		.nv-x text{
+		  font-size: 13px;
+          fill: blue;
+		}
+        .nv-y text{
+		  font-size: 20px;
+          fill:red;
+		}
+	    </style>
+    </head>
+    <body>
+        
+    <div id="multibarhorizontalchart"><svg style="width:1400px;height:900px;"></svg></div>
+
+
+    <script>
+
+
+
+                data_multibarhorizontalchart=[{"values": [{"y": 49, "x": "/rest_api/v1/modules"}, {"y": 16, "x": "/rest_api/v1/release-variants"}, {"y": 592, "x": "/rest_api/v1/composes"}, {"y": 92, "x": "/rest_api/v1/releases"}, {"y": 2, "x": "/rest_api/v1/sigkeys"}, {"y": 1, "x": "/rest_api/v1/partners"}], "key": "Serie 1", "yAxis": "1"}];
+
+
+            nv.addGraph(function() {
+        var chart = nv.models.discreteBarChart();
+
+        chart.margin({top: 30, right: 60, bottom: 50, left: 60});
+
+        var datum = data_multibarhorizontalchart;
+
+
+
+                    chart.yAxis
+                .tickFormat(d3.format(',.0f'));
+
+    
+    
+
+        
+
+
+
+            d3.select('#multibarhorizontalchart svg')
+            .datum(datum)
+            .transition().duration(500)
+            .attr('width', 1400)
+            .attr('height', 900)
+            .call(chart);
+
+    
+        });
+
+
+
+    </script>
+
+    </body>
+</html>
